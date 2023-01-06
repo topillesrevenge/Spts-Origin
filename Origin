@@ -1,0 +1,273 @@
+
+local repo = 'https://raw.githubusercontent.com/wally-rblx/LinoriaLib/main/'
+
+local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
+local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
+local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
+
+local Window = Library:CreateWindow({
+    Title = 'Example menu',
+    Center = true, 
+    AutoShow = true,
+})
+
+local Tabs = {
+    Main = Window:AddTab('Main'), 
+    Teleports = Window:AddTab('Teleports'),
+    ['UI Settings'] = Window:AddTab('UI Settings'),
+}
+
+local Lplr = game.Players.LocalPlayer
+
+local LeftGroupBox = Tabs.Main:AddLeftGroupbox('Auto Training')
+local RightGroupBox = Tabs.Main:AddRightGroupbox('Misc')
+local Teleports = Tabs.Teleports:AddLeftGroupbox('Endurance')
+local RTeleports = Tabs.Teleports:AddRightGroupbox('Psychic')
+
+
+
+
+
+
+local SathQuest = RightGroupBox:AddButton('Talk to Sath', function()
+    local args = {
+        [1] = {
+            [1] = "QuestTalkStart"
+        }
+    }
+    game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+end)
+SathQuest:AddTooltip('Talk to Sathopian')
+
+local Spawn = Teleports:AddButton('Spawn', function()
+    Lplr.Character.HumanoidRootPart.CFrame = CFrame.new(458.07525634765625, 249.19007873535156, 889.5375366210938)
+end)
+Spawn:AddTooltip('Go to Spawn')
+---------------------------------
+local IceBath = Teleports:AddButton('Ice Bath 100+ BT', function()
+    Lplr.Character.HumanoidRootPart.CFrame = CFrame.new(367.01153564453125, 249.7312774658203, -444.9839782714844)
+end)
+IceBath:AddTooltip('Teleport to IceBath')
+local LavaBath = Teleports:AddButton('Lava Bath 10k+ BT', function()
+    Lplr.Character.HumanoidRootPart.CFrame = CFrame.new(354.3601379394531, 263.76739501953125, -494.0677185058594)
+end)
+LavaBath:AddTooltip('Teleport to LavaBath')
+local IceVolcano = Teleports:AddButton('Ice Volcano 100k+ BT', function()
+    Lplr.Character.HumanoidRootPart.CFrame = CFrame.new(1635.67114, 257.986633, 2247.5061, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
+IceVolcano:AddTooltip('Teleport to Ice Volcano')
+local Tornado = Teleports:AddButton('Tornado 1M+ BT', function()
+    Lplr.Character.HumanoidRootPart.CFrame = CFrame.new(-2301.5061, 1003.84021, 1069.53088, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
+Tornado:AddTooltip('Teleport to Tornado')
+local Volcano = Teleports:AddButton('Volcano 10M+ BT', function()
+    Lplr.Character.HumanoidRootPart.CFrame = CFrame.new(-2046.67773, 710, -1879.83411, -0.945347548, 0, 0.326064825, 0, 1, 0, -0.326064825, 0, -0.945347548)
+end)
+Volcano:AddTooltip('Teleport to Volcano')
+-- Halloween
+local GreenFire = Teleports:AddButton('Green Fire 1B+ BT', function()
+    Lplr.Character.HumanoidRootPart.CFrame = CFrame.new(-250.57515, 290.834503, 979.104309, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
+GreenFire:AddTooltip('Teleport to GreenFire')
+local AcidBath = Teleports:AddButton('Acid Bath 100B+ BT', function()
+    Lplr.Character.HumanoidRootPart.CFrame = CFrame.new(-278.696777, 280.548737, 991.980652, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
+AcidBath:AddTooltip('Teleport to Volcano')
+local MagmaBath = Teleports:AddButton('Magma Bath 10T+ BT', function()
+    Lplr.Character.HumanoidRootPart.CFrame = CFrame.new(-278.582245, 280.503174, 1006.93542, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
+MagmaBath:AddTooltip('Teleport to Lava Bath')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--Volcanic -2046.67773, 710, -1879.83411, -0.945347548, 0, 0.326064825, 0, 1, 0, -0.326064825, 0, -0.945347548
+
+
+
+
+
+
+
+
+
+
+
+
+LeftGroupBox:AddToggle('Fist', {
+    Text = 'Fist Strength',
+    Default = false,
+    Tooltip = 'Autofarm Fist Strength', 
+})
+
+Toggles.Fist:OnChanged(function()
+    if Toggles.Fist.Value == true then
+        while true do
+            wait(0.25)
+            local args = {
+                [1] = {
+                    [1] = "Add_FS_Request"
+                }
+            }
+            
+            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+            if Toggles.Fist.Value == false then
+                break
+            end
+        end
+    end
+end)
+
+Toggles.Fist:SetValue(false)
+
+
+LeftGroupBox:AddToggle('Body', {
+    Text = 'Body Toughness',
+    Default = false, 
+    Tooltip = 'Autofarm Body Toughness', 
+})
+
+Toggles.Body:OnChanged(function()
+    if Toggles.Body.Value == true then
+        while true do
+            wait(0.25)
+            local args = {
+                [1] = {
+                    [1] = "+BT1"
+                }
+            }
+            
+            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+            if Toggles.Body.Value == false then
+                break
+            end
+        end
+    end
+end)
+
+Toggles.Body:SetValue(false)
+
+
+
+LeftGroupBox:AddDivider()
+
+LeftGroupBox:AddToggle('Jump', {
+    Text = 'Jump Force',
+    Default = false, 
+    Tooltip = 'Autofarm Jump Force', 
+})
+
+Toggles.Jump:OnChanged(function()
+    if Toggles.Jump.Value == true then
+        while true do
+            wait(0.5)
+            local args = {
+                [1] = {
+                    [1] = "Add_JF_Request"
+                }
+            }
+            
+            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+            if Toggles.Jump.Value == false then
+                break
+            end
+        end
+    end
+end)
+
+Toggles.Jump:SetValue(false)
+
+LeftGroupBox:AddToggle('Movement', {
+    Text = 'Movement Speed',
+    Default = false, 
+    Tooltip = 'Autofarm Movement Speed', 
+})
+
+Toggles.Movement:OnChanged(function()
+    if Toggles.Movement.Value == true then
+        while true do
+            wait(0.5)
+            local args = {
+                [1] = {
+                    [1] = "Add_MS_Request"
+                }
+            }
+            
+            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+            if Toggles.Movement.Value == false then
+                break
+            end
+        end
+    end
+end)
+
+Toggles.Movement:SetValue(false)
+
+
+
+
+
+
+local MyButton = LeftGroupBox:AddButton('Button', function()
+    print('You clicked a button!')
+end)
+
+
+
+MyButton:AddTooltip('This is a button')
+
+
+
+Library:OnUnload(function()
+    print('Unloaded!')
+    Library.Unloaded = true
+end)
+
+--  Settings
+local MenuGroup = Tabs['UI Settings']:AddLeftGroupbox('Menu')
+
+
+MenuGroup:AddButton('Unload', function() Library:Unload() end)
+MenuGroup:AddLabel('Menu bind'):AddKeyPicker('MenuKeybind', { Default = 'End', NoUI = true, Text = 'Menu keybind' }) 
+
+Library.ToggleKeybind = Options.MenuKeybind 
+
+
+-- Hand the library over to our managers
+ThemeManager:SetLibrary(Library)
+SaveManager:SetLibrary(Library)
+
+-- Ignore keys that are used by ThemeManager. 
+-- (we dont want configs to save themes, do we?)
+SaveManager:IgnoreThemeSettings() 
+
+-- Adds our MenuKeybind to the ignore list 
+-- (do you want each config to have a different menu key? probably not.)
+SaveManager:SetIgnoreIndexes({ 'MenuKeybind' }) 
+
+-- use case for doing it this way: 
+-- a script hub could have themes in a global folder
+-- and game configs in a separate folder per game
+ThemeManager:SetFolder('MyScriptHub')
+SaveManager:SetFolder('MyScriptHub/specific-game')
+
+-- Builds our config menu on the right side of our tab
+SaveManager:BuildConfigSection(Tabs['UI Settings']) 
+
+-- Builds our theme menu (with plenty of built in themes) on the left side
+-- NOTE: you can also call ThemeManager:ApplyToGroupbox to add it to a specific groupbox
+ThemeManager:ApplyToTab(Tabs['UI Settings'])
+
+-- You can use the SaveManager:LoadAutoloadConfig() to load a config 
+-- which has been marked to be one that auto loads!
